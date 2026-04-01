@@ -1,0 +1,3 @@
+fastapi
+uvicorn
+Psycopg2-binary

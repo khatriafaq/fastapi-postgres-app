@@ -1,0 +1,24 @@
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: appdb
+      POSTGRES_USER: devops
+      POSTGRES_PASSWORD: secret123
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+
+  web:
+    build: .
+    ports:
+      - "9000:9000"
+    environment:
+      DB_HOST: db
+      DB_NAME: appdb
+      DB_USER: devops
+      DB_PASSWORD: secret123
+    depends_on:
+      - db
+volumes:
+  postgres_data:
